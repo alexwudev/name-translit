@@ -11,7 +11,7 @@ import sys
 import opencc
 
 sys.stdout.reconfigure(encoding="utf-8")
-LANGS = ["fi", "ru", "id", "en", "fr", "de", "es", "fa", "ar"]
+LANGS = ["fi", "ru", "id", "en", "fr", "de", "es", "fa", "ar", "he"]
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DST = os.path.join(ROOT, "name_translit", "langs")
 FIX = str.maketrans("裏於佔託採佈羣誇", "里于占托采布群夸")

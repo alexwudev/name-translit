@@ -41,13 +41,13 @@ pre{background:var(--panel);border:1px solid var(--line);border-radius:6px;paddi
 <body>
 <main>
 <h1>外語譯名音譯</h1>
-<p class="sub">芬蘭語、俄語、印尼語、英語、法語、德語、西班牙語、波斯語、阿拉伯語的地名與人名，依中文維基「外語譯音表」與中國國家標準音譯，輸出繁體字形。每行一個原文。</p>
+<p class="sub">芬蘭語、俄語、印尼語、英語、法語、德語、西班牙語、波斯語、阿拉伯語、希伯來語的地名與人名，依中文維基「外語譯音表」與中國國家標準音譯，輸出繁體字形。每行一個原文。</p>
 
 <div class="bar">
   <label>語言 <select id="lang">
     <option value="fi">芬蘭語</option><option value="ru">俄語</option><option value="id">印尼語</option>
     <option value="en">英語</option><option value="fr">法語</option><option value="de">德語</option>
-    <option value="es">西班牙語</option><option value="fa">波斯語</option><option value="ar">阿拉伯語</option>
+    <option value="es">西班牙語</option><option value="fa">波斯語</option><option value="ar">阿拉伯語</option><option value="he">希伯來語</option>
   </select></label>
   <div class="seg">
     <label><input type="radio" name="mode" value="place" checked><span>地名</span></label>
@@ -87,7 +87,7 @@ name-translit fi place Kuuterselkä Leitimojärvi
 name-translit de person "Erich von Manstein" --json
 uvx --from git+https://github.com/alexwudev/name-translit name-translit es place Valladolid   # 有 uv 時免安裝</pre>
   <ul>
-    <li>語言：fi 芬蘭語、ru 俄語（西里爾字母）、id 印尼語、en 英語、fr 法語、de 德語、es 西班牙語、fa 波斯語（拉丁轉寫）、ar 阿拉伯語（拉丁轉寫）。</li>
+    <li>語言：fi 芬蘭語、ru 俄語（西里爾字母）、id 印尼語、en 英語、fr 法語、de 德語、es 西班牙語、fa 波斯語（拉丁轉寫）、ar 阿拉伯語（拉丁轉寫）、he 希伯來語（拉丁轉寫）。</li>
     <li><code>--json</code> 輸出 <code>[{"src","zh","extra":{說明:版本},"detail":[…]}]</code>；<code>-v</code> 附音節與逐字來源。原文可給多個，不給時從標準輸入每行讀一個。</li>
   </ul>
 </div>
@@ -108,6 +108,7 @@ const HINT = {
   es: '輸入西班牙文拼寫（重音符號、ñ、ü 要保留），例如 Valladolid、Sierra de Guadarrama。',
   fa: '只收拉丁轉寫（ā ī ū、š č ž、kh、q、ʿ 等），例如 Eṣfahān、Bandar-e Abbās；波斯文字母不標短元音，無法判斷讀音。',
   ar: '輸入拉丁轉寫（UNGEGN／ALA-LC），例如 Jabal Mūsā、Ḥusnī Mubārak；阿拉伯字母須標短元音。',
+  he: '輸入希伯來語拉丁轉寫（照希伯來語讀音），例如 Shimon Peres、Netanyahu；只有新華社人名表，地名僅供參考（以色列地名多有慣譯）。',
 };
 let py = null, ready = false, rows = [];
 

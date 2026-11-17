@@ -1,6 +1,6 @@
 # 外語譯名音譯（name-translit）
 
-芬蘭語、俄語、印尼語、英語、法語、德語、西班牙語、波斯語、阿拉伯語的地名與人名，依中文維基百科「[外語譯音表](https://zh.wikipedia.org/wiki/Wikipedia:外語譯音表)」與中國國家／行業標準音譯成中文，輸出繁體字形。
+芬蘭語、俄語、印尼語、英語、法語、德語、西班牙語、波斯語、阿拉伯語、希伯來語的地名與人名，依中文維基百科「[外語譯音表](https://zh.wikipedia.org/wiki/Wikipedia:外語譯音表)」與中國國家／行業標準音譯成中文，輸出繁體字形。
 
 - 網頁版：https://alexwudev.github.io/name-translit/
 - 命令列：`pip install "git+https://github.com/alexwudev/name-translit"` 後 `name-translit <語言> <place|person> <原文…> [--json] [-v]`
