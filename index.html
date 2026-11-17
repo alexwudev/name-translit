@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>外語譯名音譯</title>
+<style>
+:root{--bg:#16181d;--panel:#1f232b;--line:#333a45;--fg:#e6e6e6;--muted:#9aa3ad;--accent:#7fb3ff;--ok:#8fd19e;--warn:#e7c26a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 "Microsoft JhengHei","Noto Sans TC",sans-serif}
+main{max-width:920px;margin:0 auto;padding:20px 16px 60px}
+h1{font-size:20px;margin:0 0 4px}
+.sub{color:var(--muted);font-size:13px;margin:0 0 16px}
+.bar{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin-bottom:12px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.seg label{padding:4px 12px;cursor:pointer;user-select:none}
+.seg input{display:none}
+.seg input:checked+span{color:#0b1220;background:var(--accent)}
+.seg span{display:inline-block;padding:4px 12px;margin:-4px -12px}
+textarea{width:100%;min-height:120px;background:var(--panel);color:var(--fg);border:1px solid var(--line);border-radius:8px;padding:10px;font:15px/1.5 Consolas,"Microsoft JhengHei",monospace;resize:vertical}
+button{font:inherit;font-size:13px;color:var(--fg);background:#2b313b;border:1px solid var(--line);border-radius:5px;padding:2px 10px;cursor:pointer}
+button:hover{border-color:var(--accent)}
+table{width:100%;border-collapse:collapse;margin-top:12px}
+th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--muted);font-weight:normal;font-size:13px}
+td.zh{font-size:17px;white-space:nowrap}
+.extra{color:var(--warn);font-size:13px}
+.detail{color:var(--muted);font-size:12px;margin-top:4px;white-space:pre-wrap}
+.err{color:#ff8a80}
+.note{color:var(--muted);font-size:13px;margin-top:20px;border-top:1px solid var(--line);padding-top:12px}
+.note li{margin:3px 0}
+a{color:var(--accent)}
+.copied{color:var(--ok)!important;border-color:var(--ok)!important}
+</style>
+</head>
+<body>
+<main>
+<h1>外語譯名音譯</h1>
+<p class="sub">芬蘭語、俄語、印尼語的地名與人名，依中文維基「外語譯音表」與中國國家標準音譯，輸出繁體字形。每行一個原文。</p>
+
+<div class="bar">
+  <div class="seg" id="lang">
+    <label><input type="radio" name="lang" value="fi" checked><span>芬蘭語</span></label>
+    <label><input type="radio" name="lang" value="ru"><span>俄語</span></label>
+    <label><input type="radio" name="lang" value="id"><span>印尼語</span></label>
+  </div>
+  <div class="seg" id="mode">
+    <label><input type="radio" name="mode" value="place" checked><span>地名</span></label>
+    <label><input type="radio" name="mode" value="person"><span>人名</span></label>
+  </div>
+  <label><input type="checkbox" id="verbose"> 顯示音節與來源</label>
+  <button id="copyAll">全部複製</button>
+</div>
+
+<textarea id="input" placeholder="每行一個原文，例如：&#10;Kuuterselkä&#10;Vuosalmi&#10;Ala-Sommee"></textarea>
+
+<table>
+  <thead><tr><th style="width:34%">原文</th><th>譯名</th><th style="width:70px"></th></tr></thead>
+  <tbody id="out"></tbody>
+</table>
+
+<div class="note">
+  <ul>
+    <li>譯音表是中國大陸標準（地名：GB/T 17693.20-2025 芬蘭語、GB/T 17693.4-2009 俄語、MZ/T 127-2019 印尼語；人名：新華社《世界人名翻译大辞典》等），台灣已有通行譯名（赫爾辛基、莫斯科、雅加達）或中文維基已有條目名時，以通行譯名為準。</li>
+    <li>俄語只收西里爾字母；烏克蘭語、白俄羅斯語等西里爾字母人名，中文維基註明也參照俄語人名表。</li>
+    <li>印尼語的 e 有兩種讀音，拼寫不分；原文有開音節的 e 時另列「e 若讀 é」版本，請查實際讀音再選。</li>
+    <li>芬蘭語地名以 järvi、joki、saari、lahti 結尾時另列通名意譯版本（湖、河、島、灣）。</li>
+    <li>同一格有兩個字（萊／雷、奧／歐）或女性用字時，取第一個；勾選「顯示音節與來源」可看到另一個。</li>
+  </ul>
+  <p>譯音表來源：<a href="https://zh.wikipedia.org/wiki/Wikipedia:外語譯音表">中文維基百科 外語譯音表</a>（CC BY-SA 4.0）。原始碼與說明見 <a href="https://github.com/alexwudev/name-translit">GitHub</a>。</p>
+</div>
+</main>
+
+<script src="data.js"></script>
+<script src="translit.js"></script>
+<script>
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const val = (name) => document.querySelector(`input[name=${name}]:checked`).value;
+let rows = [];
+
+function render() {
+  const lang = val('lang'), mode = val('mode'), verbose = $('verbose').checked;
+  const lines = $('input').value.split('\n').map((l) => l.trim()).filter((l) => l);
+  rows = [];
+  $('out').innerHTML = lines.map((src, i) => {
+    let r;
+    try { r = Translit[lang](src, mode); } catch (e) { r = { zh: '', extra: [], info: [], error: '無法處理：' + e.message }; }
+    rows.push(r.zh);
+    const extra = (r.extra || []).map(([k, v]) => `<div class="extra">${esc(k)}：${esc(v)} <button data-copy="${esc(v)}">複製</button></div>`).join('');
+    const detail = verbose && r.info ? `<div class="detail">${r.info.map((x) =>
+      `${esc(x.src)}${x.syl ? '：' + esc(x.syl) : ''}｜${esc((x.trace || []).join('，'))}${(x.notes || []).map((n) => '\n  註：' + esc(n)).join('')}`).join('\n')}</div>` : '';
+    const zh = r.error ? `<span class="err">${esc(r.error)}</span>` : esc(r.zh);
+    return `<tr><td>${esc(src)}</td><td class="zh">${zh}${extra}${detail}</td><td>${r.zh ? `<button data-copy="${esc(r.zh)}">複製</button>` : ''}</td></tr>`;
+  }).join('');
+  try { localStorage.setItem('nt-state', JSON.stringify({ lang, mode, verbose, text: $('input').value })); } catch (e) {}
+}
+
+function copy(text, btn) {
+  navigator.clipboard.writeText(text).then(() => {
+    if (!btn) return;
+    const old = btn.textContent; btn.textContent = '已複製'; btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = old; btn.classList.remove('copied'); }, 1200);
+  });
+}
+
+document.addEventListener('click', (e) => { const b = e.target.closest('button[data-copy]'); if (b) copy(b.dataset.copy, b); });
+$('copyAll').addEventListener('click', (e) => copy(rows.join('\n'), e.target));
+['input'].forEach((id) => $(id).addEventListener('input', render));
+document.querySelectorAll('input[type=radio], #verbose').forEach((el) => el.addEventListener('change', render));
+
+try {
+  const s = JSON.parse(localStorage.getItem('nt-state') || 'null');
+  if (s) {
+    document.querySelector(`input[name=lang][value=${s.lang}]`).checked = true;
+    document.querySelector(`input[name=mode][value=${s.mode}]`).checked = true;
+    $('verbose').checked = !!s.verbose; $('input').value = s.text || '';
+  }
+} catch (e) {}
+render();
+</script>
+</body>
+</html>

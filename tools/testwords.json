@@ -1,0 +1,14 @@
+{
+ "fi": {
+  "place": ["Viipuri", "Tali", "Ihantala", "Kuuterselkä", "Vuosalmi", "Ala-Sommee", "Lappeenranta", "Kokkari", "Kivennapa", "Kilpeenjoki", "Liikola", "Räisälä", "Röyttä", "Siiranmäki", "Kavantsaari", "Mantsinsaari", "Juustilankangas", "Kanneljärvi", "Nurmilampi", "Pyöräkangas", "Talinmylly", "Tienhaara", "Tulemajoki", "Leitimojärvi", "Ylimaa", "Äyräpää", "Äänislinna", "Santahamina", "Honkaniemi", "Rovaniemi", "Karhumäki", "Helsinki", "Imatra", "Saimaa", "Oulu", "Tornio", "Mikkeli", "Hattula", "Portinhoikka", "Vojakkala", "Muolaa", "Perkjärvi", "Pudasjärvi", "Hämeenlinna", "Jyväskylä", "Tampere", "Turku", "Kemijärvi", "Aitto", "Muanto", "Torva", "Antrea", "Poventsa", "Parolannummi"],
+  "person": ["Ruben Lagus", "Erkki Käkelä", "Paavo Talvela", "Petteri Jouko", "Martti Frick", "Aku Vuontela", "Woldemar Oinonen", "Lasse Laaksonen", "Veikko Lounila", "Aladár Paasonen", "Heikki Mikkola", "Taavetti Laatikainen", "Aksel Airo", "Vesa Tynkkynen"]
+ },
+ "ru": {
+  "place": ["Ржев", "Вязьма", "Ивановка", "Зеленокумск", "Смоленск", "Новгород", "Волгоград", "Екатеринбург", "Кострома", "Тверь", "Пермь", "Курск", "Белгород", "Орёл", "Калуга", "Тула", "Брянск", "Рязань", "Ярославль", "Житомир", "Харьков", "Ленинград", "Петрозаводск", "Мурманск", "Каменка", "Ильинка", "Воронеж", "Кременчуг", "Днепропетровск", "Великие Луки", "Марьино", "Ульяновск", "Подольск", "Хабаровск", "Саратов", "Пушкино", "Антоновка", "Озёрск", "Бобруйск", "Гомель", "Брест", "Витебск", "Объячево", "Подъём", "Медвежьегорск", "Лодейное Поле", "Олонец", "Сортавала", "Дальнегорск", "Южно-Сахалинск"],
+  "person": ["Константин Рокоссовский", "Иван Конев", "Георгий Жуков", "Александр Василевский", "Николай Ватутин", "Василий Чуйков", "Андрей Ерёменко", "Родион Малиновский", "Фёдор Толбухин", "Иван Черняховский", "Кирилл Мерецков", "Леонид Говоров", "Терентьев", "Евгений Шапошников", "Семён Тимошенко"]
+ },
+ "id": {
+  "place": ["Afia", "Kapuk", "Karang", "Eliase", "Kampa", "Ngasem", "Angar", "Dodinga", "Panunggalan", "Panggul", "Kandanghaur", "Benjina", "Menjalin", "Nangasuruk", "Nangakelawit", "Timpah", "Bahum-belu", "Balu-ma", "Maab", "Saileen", "Béa", "Mouba", "Rappang", "Pattallassang", "Pulau Masalaka Besar", "Limas Timur", "Sungai Tembesi", "Pulau Telan", "Tk. Cempi", "Tk. Ngame", "Sungai Batanghari", "Natuna", "Bandung", "Palembang", "Semarang", "Ambon", "Kalimantan", "Sulawesi", "Bukittinggi", "Pekanbaru", "Banjarmasin", "Pontianak", "Manokwari", "Kepulauan Seribu"],
+  "person": ["Sukarno", "Suharto", "Abdul Haris Nasution", "Soedirman", "Tan Malaka", "Megawati Sukarnoputri", "Joko Widodo", "Prabowo Subianto"]
+ }
+}
