@@ -115,7 +115,12 @@
       if (mode === 'place') {
         const low = text.toLowerCase();
         for (const [g, zh] of GENERIC) {
-          if (low.endsWith(g) && low.length > g.length + 1) { extra.push(['通名意譯', translit(text.slice(0, -g.length), mode).zh + zh]); break; }
+          if (low.endsWith(g) && low.length > g.length + 1) {
+            let stem = text.slice(0, -g.length);
+            // 專名在複合地名裡是屬格，意譯通名時還原主格（Kärstilänjärvi→凱爾斯蒂萊湖）
+            if (/n$/i.test(stem) && stem.length > 2 && VOW.includes(stem[stem.length - 2].toLowerCase())) stem = stem.slice(0, -1);
+            extra.push(['通名意譯', translit(stem, mode).zh + zh]); break;
+          }
         }
       }
       return { zh: r.zh, extra, info: r.info };
