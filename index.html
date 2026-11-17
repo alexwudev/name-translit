@@ -11,19 +11,22 @@ body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 "Microsoft Jhen
 main{max-width:920px;margin:0 auto;padding:20px 16px 60px}
 h1{font-size:20px;margin:0 0 4px}
 .sub{color:var(--muted);font-size:13px;margin:0 0 16px}
-.bar{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin-bottom:12px}
+.bar{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin-bottom:8px}
 .seg{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}
-.seg label{padding:4px 12px;cursor:pointer;user-select:none}
+.seg label{cursor:pointer;user-select:none}
 .seg input{display:none}
 .seg input:checked+span{color:#0b1220;background:var(--accent)}
-.seg span{display:inline-block;padding:4px 12px;margin:-4px -12px}
+.seg span{display:inline-block;padding:4px 12px}
+select{font:inherit;color:var(--fg);background:#2b313b;border:1px solid var(--line);border-radius:5px;padding:3px 6px}
 textarea{width:100%;min-height:120px;background:var(--panel);color:var(--fg);border:1px solid var(--line);border-radius:8px;padding:10px;font:15px/1.5 Consolas,"Microsoft JhengHei",monospace;resize:vertical}
 button{font:inherit;font-size:13px;color:var(--fg);background:#2b313b;border:1px solid var(--line);border-radius:5px;padding:2px 10px;cursor:pointer}
 button:hover{border-color:var(--accent)}
+.hint{color:var(--muted);font-size:13px;margin:0 0 8px}
+#status{font-size:13px;color:var(--warn)}
 table{width:100%;border-collapse:collapse;margin-top:12px}
 th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top}
 th{color:var(--muted);font-weight:normal;font-size:13px}
-td.zh{font-size:17px;white-space:nowrap}
+td.zh{font-size:17px}
 .extra{color:var(--warn);font-size:13px}
 .detail{color:var(--muted);font-size:12px;margin-top:4px;white-space:pre-wrap}
 .err{color:#ff8a80}
@@ -38,23 +41,25 @@ pre{background:var(--panel);border:1px solid var(--line);border-radius:6px;paddi
 <body>
 <main>
 <h1>外語譯名音譯</h1>
-<p class="sub">芬蘭語、俄語、印尼語的地名與人名，依中文維基「外語譯音表」與中國國家標準音譯，輸出繁體字形。每行一個原文。</p>
+<p class="sub">芬蘭語、俄語、印尼語、英語、法語、德語、西班牙語、波斯語、阿拉伯語的地名與人名，依中文維基「外語譯音表」與中國國家標準音譯，輸出繁體字形。每行一個原文。</p>
 
 <div class="bar">
-  <div class="seg" id="lang">
-    <label><input type="radio" name="lang" value="fi" checked><span>芬蘭語</span></label>
-    <label><input type="radio" name="lang" value="ru"><span>俄語</span></label>
-    <label><input type="radio" name="lang" value="id"><span>印尼語</span></label>
-  </div>
-  <div class="seg" id="mode">
+  <label>語言 <select id="lang">
+    <option value="fi">芬蘭語</option><option value="ru">俄語</option><option value="id">印尼語</option>
+    <option value="en">英語</option><option value="fr">法語</option><option value="de">德語</option>
+    <option value="es">西班牙語</option><option value="fa">波斯語</option><option value="ar">阿拉伯語</option>
+  </select></label>
+  <div class="seg">
     <label><input type="radio" name="mode" value="place" checked><span>地名</span></label>
     <label><input type="radio" name="mode" value="person"><span>人名</span></label>
   </div>
   <label><input type="checkbox" id="verbose"> 顯示音節與來源</label>
   <button id="copyAll">全部複製</button>
+  <span id="status">載入譯音程式中…（第一次約需數秒）</span>
 </div>
+<p class="hint" id="hint"></p>
 
-<textarea id="input" placeholder="每行一個原文，例如：&#10;Kuuterselkä&#10;Vuosalmi&#10;Ala-Sommee"></textarea>
+<textarea id="input" placeholder="每行一個原文"></textarea>
 
 <table>
   <thead><tr><th style="width:34%">原文</th><th>譯名</th><th style="width:70px"></th></tr></thead>
@@ -63,10 +68,9 @@ pre{background:var(--panel);border:1px solid var(--line);border-radius:6px;paddi
 
 <div class="note">
   <ul>
-    <li>譯音表是中國大陸標準（地名：GB/T 17693.20-2025 芬蘭語、GB/T 17693.4-2009 俄語、MZ/T 127-2019 印尼語；人名：新華社《世界人名翻译大辞典》等），台灣已有通行譯名（赫爾辛基、莫斯科、雅加達）或中文維基已有條目名時，以通行譯名為準。</li>
-    <li>俄語只收西里爾字母；烏克蘭語、白俄羅斯語等西里爾字母人名，中文維基註明也參照俄語人名表。</li>
-    <li>印尼語的 e 有兩種讀音，拼寫不分；原文有開音節的 e 時另列「e 若讀 é」版本，請查實際讀音再選。</li>
-    <li>芬蘭語地名以 järvi、joki、saari、lahti 結尾時另列通名意譯版本（湖、河、島、灣）。</li>
+    <li>譯音表是中國大陸標準（地名依各語言的 GB/T 17693 系列與 MZ/T 127-2019；人名依新華社《世界人名翻译大辞典》等）。台灣已有通行譯名（倫敦、莫斯科、雅加達、蒙哥馬利）或中文維基已有條目名時，以通行譯名為準，不要用本工具改。</li>
+    <li>人名常有新華社逐條收錄的慣譯（加西亞、穆罕默德、馬丁），與照表譯出的結果不同；寫條目時先查中文維基或辭典，查不到才用本工具。</li>
+    <li>黃字是另列的版本：通名意譯（湖、河、山、港）、印尼語「e 若讀 é」、西班牙語拉丁美洲讀音、阿拉伯語人名的地名表版本等，依情況選用。</li>
     <li>同一格有兩個字（萊／雷、奧／歐）或女性用字時，取第一個；勾選「顯示音節與來源」可看到另一個。</li>
   </ul>
   <p>譯音表來源：<a href="https://zh.wikipedia.org/wiki/Wikipedia:外語譯音表">中文維基百科 外語譯音表</a>（CC BY-SA 4.0）。原始碼與說明見 <a href="https://github.com/alexwudev/name-translit">GitHub</a>。</p>
@@ -75,42 +79,76 @@ pre{background:var(--panel);border:1px solid var(--line);border-radius:6px;paddi
 <div class="note" id="api">
   <h2 style="font-size:16px;margin:0 0 8px;color:var(--fg)">給 AI 與程式呼叫</h2>
   <p>完整說明（純文字，適合直接交給 AI 讀）：<a href="llms.txt">llms.txt</a></p>
-  <p><b>方法一：命令列</b>（需要 Node.js 與網路）</p>
-  <pre>npx -y github:alexwudev/name-translit &lt;fi|ru|id&gt; &lt;place|person&gt; &lt;原文…&gt; [--json] [-v]
+  <p><b>命令列</b>（需要 Python 3.9 以上與網路；本頁與命令列跑的是同一份程式，結果相同）</p>
+  <pre>pip install "git+https://github.com/alexwudev/name-translit"
+name-translit &lt;語言&gt; &lt;place|person&gt; &lt;原文…&gt; [--json] [-v]
 
-npx -y github:alexwudev/name-translit fi place Kuuterselkä Leitimojärvi
-npx -y github:alexwudev/name-translit ru person "Константин Рокоссовский" --json</pre>
+name-translit fi place Kuuterselkä Leitimojärvi
+name-translit de person "Erich von Manstein" --json
+uvx --from git+https://github.com/alexwudev/name-translit name-translit es place Valladolid   # 有 uv 時免安裝</pre>
   <ul>
-    <li>fi 芬蘭語、ru 俄語（西里爾字母）、id 印尼語；place 地名、person 人名。原文可給多個，不給時從標準輸入每行讀一個。</li>
-    <li><code>--json</code> 輸出 <code>[{"src","zh","extra","error"}]</code>；<code>-v</code> 附音節與逐字來源。</li>
+    <li>語言：fi 芬蘭語、ru 俄語（西里爾字母）、id 印尼語、en 英語、fr 法語、de 德語、es 西班牙語、fa 波斯語（拉丁轉寫）、ar 阿拉伯語（拉丁轉寫）。</li>
+    <li><code>--json</code> 輸出 <code>[{"src","zh","extra":{說明:版本},"detail":[…]}]</code>；<code>-v</code> 附音節與逐字來源。原文可給多個，不給時從標準輸入每行讀一個。</li>
   </ul>
-  <p><b>方法二：直接載入本站程式</b>（Node.js 18 以上，不用 npm）：抓 <code>data.js</code> 與 <code>translit.js</code> 執行後呼叫 <code>Translit.fi(原文, 'place')</code>，回傳 <code>{zh, extra, info, error}</code>。完整一行指令見 <a href="llms.txt">llms.txt</a>。</p>
 </div>
 </main>
 
-<script src="data.js"></script>
-<script src="translit.js"></script>
+<script src="https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js"></script>
 <script>
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-const val = (name) => document.querySelector(`input[name=${name}]:checked`).value;
-let rows = [];
+const mode = () => document.querySelector('input[name=mode]:checked').value;
+const HINT = {
+  fi: '輸入芬蘭文拼寫（ä、ö 要保留），例如 Kuuterselkä、Leitimojärvi。',
+  ru: '輸入俄文西里爾字母，例如 Ржев、Константин Рокоссовский；拉丁轉寫請先換回俄文。',
+  id: '輸入印尼文拼寫（新舊拼法皆可），例如 Panggul、Sungai Tembesi。',
+  en: '英語表依讀音排：輸入「拼寫/國際音標/」最準，例如 Avoca/əˈvəʊkə/；只給拼寫時讀音是推測的，僅供參考。',
+  fr: '輸入法文拼寫（重音符號要保留），例如 Philippe Leclerc、Besançon。',
+  de: '輸入德文拼寫（ä ö ü ß 或 ae oe ue），例如 Regensburg、Erich von Manstein。',
+  es: '輸入西班牙文拼寫（重音符號、ñ、ü 要保留），例如 Valladolid、Sierra de Guadarrama。',
+  fa: '只收拉丁轉寫（ā ī ū、š č ž、kh、q、ʿ 等），例如 Eṣfahān、Bandar-e Abbās；波斯文字母不標短元音，無法判斷讀音。',
+  ar: '輸入拉丁轉寫（UNGEGN／ALA-LC），例如 Jabal Mūsā、Ḥusnī Mubārak；阿拉伯字母須標短元音。',
+};
+let py = null, ready = false, rows = [];
+
+async function boot() {
+  try {
+    py = await loadPyodide();
+    const man = await (await fetch('manifest.json')).json();
+    const map = await (await fetch('s2t_map.json')).text();
+    py.FS.mkdirTree('/app/name_translit/langs');
+    for (const f of ['__init__.py', 'cli.py']) py.FS.writeFile('/app/name_translit/' + f, await (await fetch('name_translit/' + f)).text());
+    for (const f of man.files) py.FS.writeFile('/app/name_translit/langs/' + f, await (await fetch('name_translit/langs/' + f)).text());
+    py.FS.writeFile('/app/s2t_map.json', map);
+    // 瀏覽器沒有 opencc：用預先逐字轉好的對照表代替（與 Python 版逐字轉換結果相同）
+    py.FS.writeFile('/app/opencc.py', 'import json\n_M=json.load(open("/app/s2t_map.json",encoding="utf-8"))\nclass OpenCC:\n    def __init__(self,cfg=None): pass\n    def convert(self,s): return "".join(_M.get(c,c) for c in s)\n');
+    py.runPython('import sys; sys.path.insert(0, "/app"); import name_translit, json');
+    ready = true;
+    $('status').textContent = '';
+    render();
+  } catch (e) { $('status').textContent = '載入失敗：' + e.message + '（請重新整理，或改用命令列）'; }
+}
 
 function render() {
-  const lang = val('lang'), mode = val('mode'), verbose = $('verbose').checked;
+  const lang = $('lang').value, verbose = $('verbose').checked;
+  $('hint').textContent = HINT[lang];
+  try { localStorage.setItem('nt-state2', JSON.stringify({ lang, mode: mode(), verbose, text: $('input').value })); } catch (e) {}
+  if (!ready) return;
   const lines = $('input').value.split('\n').map((l) => l.trim()).filter((l) => l);
   rows = [];
-  $('out').innerHTML = lines.map((src, i) => {
-    let r;
-    try { r = Translit[lang](src, mode); } catch (e) { r = { zh: '', extra: [], info: [], error: '無法處理：' + e.message }; }
+  if (!lines.length) { $('out').innerHTML = ''; return; }
+  let res;
+  try {
+    py.globals.set('_args', py.toPy([lang, lines, mode(), verbose]));
+    res = JSON.parse(py.runPython('json.dumps(name_translit.run(_args[0], _args[1], _args[2], _args[3]), ensure_ascii=False)'));
+  } catch (e) { $('out').innerHTML = `<tr><td colspan="3" class="err">無法處理：${esc(e.message.split('\n').slice(-2).join(' '))}</td></tr>`; return; }
+  $('out').innerHTML = res.map((r) => {
     rows.push(r.zh);
-    const extra = (r.extra || []).map(([k, v]) => `<div class="extra">${esc(k)}：${esc(v)} <button data-copy="${esc(v)}">複製</button></div>`).join('');
-    const detail = verbose && r.info ? `<div class="detail">${r.info.map((x) =>
-      `${esc(x.src)}${x.syl ? '：' + esc(x.syl) : ''}｜${esc((x.trace || []).join('，'))}${(x.notes || []).map((n) => '\n  註：' + esc(n)).join('')}`).join('\n')}</div>` : '';
-    const zh = r.error ? `<span class="err">${esc(r.error)}</span>` : esc(r.zh);
-    return `<tr><td>${esc(src)}</td><td class="zh">${zh}${extra}${detail}</td><td>${r.zh ? `<button data-copy="${esc(r.zh)}">複製</button>` : ''}</td></tr>`;
+    const isErr = /^（.*）$/.test(r.zh);
+    const extra = Object.entries(r.extra || {}).map(([k, v]) => `<div class="extra">${esc(k)}：${esc(v)} <button data-copy="${esc(v.split('＝').pop())}">複製</button></div>`).join('');
+    const detail = verbose && r.detail.length ? `<div class="detail">${esc(r.detail.join('\n'))}</div>` : '';
+    return `<tr><td>${esc(r.src)}</td><td class="zh">${isErr ? `<span class="err">${esc(r.zh)}</span>` : esc(r.zh)}${extra}${detail}</td><td>${r.zh && !isErr ? `<button data-copy="${esc(r.zh)}">複製</button>` : ''}</td></tr>`;
   }).join('');
-  try { localStorage.setItem('nt-state', JSON.stringify({ lang, mode, verbose, text: $('input').value })); } catch (e) {}
 }
 
 function copy(text, btn) {
@@ -120,21 +158,17 @@ function copy(text, btn) {
     setTimeout(() => { btn.textContent = old; btn.classList.remove('copied'); }, 1200);
   });
 }
-
 document.addEventListener('click', (e) => { const b = e.target.closest('button[data-copy]'); if (b) copy(b.dataset.copy, b); });
 $('copyAll').addEventListener('click', (e) => copy(rows.join('\n'), e.target));
-['input'].forEach((id) => $(id).addEventListener('input', render));
-document.querySelectorAll('input[type=radio], #verbose').forEach((el) => el.addEventListener('change', render));
-
+let timer;
+$('input').addEventListener('input', () => { clearTimeout(timer); timer = setTimeout(render, 150); });
+document.querySelectorAll('input[name=mode], #verbose, #lang').forEach((el) => el.addEventListener('change', render));
 try {
-  const s = JSON.parse(localStorage.getItem('nt-state') || 'null');
-  if (s) {
-    document.querySelector(`input[name=lang][value=${s.lang}]`).checked = true;
-    document.querySelector(`input[name=mode][value=${s.mode}]`).checked = true;
-    $('verbose').checked = !!s.verbose; $('input').value = s.text || '';
-  }
+  const s = JSON.parse(localStorage.getItem('nt-state2') || 'null');
+  if (s) { $('lang').value = s.lang; document.querySelector(`input[name=mode][value=${s.mode}]`).checked = true; $('verbose').checked = !!s.verbose; $('input').value = s.text || ''; }
 } catch (e) {}
 render();
+boot();
 </script>
 </body>
 </html>

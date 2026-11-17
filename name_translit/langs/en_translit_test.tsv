@@ -1,0 +1,77 @@
+# 英語音譯工具測試詞：模式<Tab>原文<Tab>預期譯名<Tab>出處。跑法：python -X utf8 en_translit.py --test
+# 模式 place／person；person-F＝名字用女名字。原文可寫「拼寫/音標/」，不附音標就是只給拼寫。
+# 地名音標照國標原書（舊式英式記法 əu ei ɛə 等），只把印刷字形換成標準 IPA 符號。
+place	Avoca/əˈvəukə/	阿沃卡	GB/T 17693.1-2008 表4（4.3.1.1）
+place	Lapel/ləˈpel/	拉佩尔	GB/T 17693.1-2008 表4（4.3.1.1）
+place	Perutz/pəˈruts/	佩鲁茨	GB/T 17693.1-2008 表4（4.3.1.1）
+place	Possession/pəˈzeʃən/	波塞申	GB/T 17693.1-2008 表4（4.3.1.1）
+place	Ingot/ˈiŋgət/	英戈特	GB/T 17693.1-2008 表4（4.3.1.2）
+place	Kokomo/ˈkəukəməu/	科科莫	GB/T 17693.1-2008 表4（4.3.1.2）
+place	Antimony/ˈæntiməni/	安蒂莫尼	GB/T 17693.1-2008 表4（4.3.1.2）
+place	Panorama/ˈpænəˈrɑːmə/	帕诺拉马	GB/T 17693.1-2008 表4（4.3.1.2）
+place	Otis/ˈəutis/	奥蒂斯	GB/T 17693.1-2008 表4（4.3.1.2）
+place	Aid/eid/	艾德	GB/T 17693.1-2008 表4（4.3.2）
+place	Ayr/ɛə/	艾尔	GB/T 17693.1-2008 表4（4.3.2）
+place	Virginia/vəˈdʒinjə/	弗吉尼亚	GB/T 17693.1-2008 表4（4.3.3）
+place	Amelia/əˈmiljə/	阿米利亚	GB/T 17693.1-2008 表4（4.3.3）
+place	Hampton/ˈhæmptən/	汉普顿	GB/T 17693.1-2008 表4（4.3.4）
+place	Lambert/ˈlæmbət/	兰伯特	GB/T 17693.1-2008 表4（4.3.4）
+place	Lamb/læm/ County	拉姆县	GB/T 17693.1-2008 表4（4.3.4）
+place	Pioneer/ˈpaiəˈniə/	派厄尼尔	GB/T 17693.1-2008 表4（4.3.5）
+place	Livermore/ˈlivəmɔə/	利弗莫尔	GB/T 17693.1-2008 表4（4.3.5）
+place	Clare/klɛə/	克莱尔	GB/T 17693.1-2008 表4（4.3.5）
+place	Cooks/kuks/	库克斯	GB/T 17693.1-2008 表4（4.3.6）
+place	Flores/ˈflɔːriz/	弗洛里斯	GB/T 17693.1-2008 表4（4.3.6）
+place	Lisburn/ˈlizbəːn/	利斯本	GB/T 17693.1-2008 表4（4.3.6）
+place	Kineton/ˈkaintən/	凯恩顿	GB/T 17693.1-2008 表4（4.3.7）
+place	Blain/blein/	布莱恩	GB/T 17693.1-2008 表4（4.3.7）
+place	Newnes/njuːnz/	纽恩斯	GB/T 17693.1-2008 表4（4.3.7）
+place	Floyd/flɔid/	弗洛伊德	GB/T 17693.1-2008 表4（4.3.8）
+place	Hoylake/ˈhɔileik/	霍伊莱克	GB/T 17693.1-2008 表4（4.3.8）
+place	Ouzel/ˈuːzl/	乌泽尔	GB/T 17693.1-2008 表4（4.3.9）
+place	Listen/ˈlisn/	利森	GB/T 17693.1-2008 表4（4.3.9）
+place	Tracy/ˈtreisi/	特雷西	GB/T 17693.1-2008 表4（4.3.10）
+place	Dromore/ˈdrəumɔə/	德罗莫尔	GB/T 17693.1-2008 表4（4.3.10）
+place	Fay/fei/	费伊	GB/T 17693.1-2008 表2（4.1.11.2）
+place	Parr/pɑː/	帕尔	GB/T 17693.1-2008 表2（4.1.11.3）
+place	Glenfield	格伦菲尔德	GB/T 17693.1-2008 表2（4.1.1）
+place	Great Island	格雷特岛	GB/T 17693.1-2008 表2（4.1.1）
+place	The Binns	宾斯	GB/T 17693.1-2008 表2（4.1.2）
+place	East Linton	东林顿	GB/T 17693.1-2008 表2（4.1.9）
+place	Little Sand Lake	小桑德湖	GB/T 17693.1-2008 表2（4.1.9）
+place	Old Deer	旧迪尔	GB/T 17693.1-2008 表2（4.1.9）
+place	Lander County	兰德县	GB/T 17693.1-2008 表3（4.2.1）
+place	Lake Talquin	塔尔昆湖	GB/T 17693.1-2008 表3（4.2.1）
+place	Lisburn	利斯本	GB/T 17693.1-2008 表4（只給拼寫）
+place	Hampton	汉普顿	GB/T 17693.1-2008 表4（只給拼寫）
+place	Kineton	凯恩顿	GB/T 17693.1-2008 表4（只給拼寫）
+place	Hoylake	霍伊莱克	GB/T 17693.1-2008 表4（只給拼寫）
+person	Tony/ˈtoʊni/ Blair/blɛər/	托尼·布莱尔	中維條目 Tony Blair（enwiki 語言連結）
+person	Gordon/ˈɡɔːrdən/ Brown/braʊn/	戈登·布朗	中維條目 Gordon Brown
+person	Neil/niːl/ Kinnock/ˈkɪnək/	尼尔·基诺克	中維條目 Neil Kinnock
+person	Nick/nɪk/ Clegg/klɛɡ/	尼克·克莱格	中維條目 Nick Clegg
+person	Hugh/hjuː/ Grant	休·格兰特	中維條目 Hugh Grant（姓只給拼寫）
+person-F	Liz/lɪz/ Truss/trʌs/	莉兹·特拉斯	中維條目 Liz Truss
+person	Andy/ˈændi/ Burnham/ˈbɜːrnəm/	安迪·伯纳姆	中維條目 Andy Burnham
+person-F	Rachel/ˈreɪtʃəl/ Reeves/riːvz/	蕾切尔·里夫斯	中維條目 Rachel Reeves
+person	Wes/wɛs/ Streeting/ˈstriːtɪŋ/	韦斯·斯特里廷	中維條目 Wes Streeting
+person	Kevin/ˈkɛvɪn/ Costner/ˈkɒstnər/	凯文·科斯特纳	中維條目 Kevin Costner
+person	Nigel/ˈnaɪdʒəl/	奈杰尔	中維條目 Nigel Farage（名）
+person	Hastings/ˈheɪstɪŋz/	黑斯廷斯	GB/T 17693.1-2008 附錄A（新華社人名譯法）
+person	Hazel/ˈheɪzəl/	黑泽尔	GB/T 17693.1-2008 附錄A
+person	Henderson/ˈhɛndərsən/	亨德森	GB/T 17693.1-2008 附錄A
+person	Jasper/ˈdʒæspər/	贾斯珀	GB/T 17693.1-2008 附錄A
+person	Martin/ˈmɑːrtɪn/	马丁	GB/T 17693.1-2008 附錄A
+person	Polk/poʊk/	波克	GB/T 17693.1-2008 附錄A
+person	Quincy/ˈkwɪnsi/	昆西	GB/T 17693.1-2008 附錄A
+person	Roberts/ˈrɒbərts/	罗伯茨	GB/T 17693.1-2008 附錄A
+person	Somerset/ˈsʌmərsɪt/	萨默塞特	GB/T 17693.1-2008 附錄A
+person	Taylor/ˈteɪlər/	泰勒	GB/T 17693.1-2008 附錄A
+person	Yates/jeɪts/	耶茨	GB/T 17693.1-2008 附錄A
+person	Fayette/feɪˈɛt/	费耶特	GB/T 17693.1-2008 附錄A
+person	Bowman/ˈboʊmən/	鲍曼	GB/T 17693.1-2008 附錄A
+person	Augusta/ɔːˈɡʌstə/	奥古斯塔	GB/T 17693.1-2008 附錄A
+person	Douglas	道格拉斯	GB/T 17693.1-2008 附錄A（只給拼寫）
+person	Broughton	布劳顿	GB/T 17693.1-2008 附錄A（只給拼寫）
+person	Taylor	泰勒	GB/T 17693.1-2008 附錄A（只給拼寫）
+person	Jasper	贾斯珀	GB/T 17693.1-2008 附錄A（只給拼寫）

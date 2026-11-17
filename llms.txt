@@ -1,47 +1,64 @@
 # name-translit：外語地名人名音譯（給 AI 與程式讀的說明）
 
-用途：把芬蘭語、俄語（西里爾字母）、印尼語的地名與人名，依中文維基百科「外語譯音表」與中國國家標準音譯成中文，輸出繁體字形。
+用途：把芬蘭語、俄語、印尼語、英語、法語、德語、西班牙語、波斯語、阿拉伯語的地名與人名，依中文維基百科「外語譯音表」與中國國家標準音譯成中文，輸出繁體字形。
 網頁版：https://alexwudev.github.io/name-translit/
-原始碼：https://github.com/alexwudev/name-translit
+原始碼：https://github.com/alexwudev/name-translit（公開，免登入）
+網頁與命令列跑的是同一份 Python 程式（網頁用 Pyodide 在瀏覽器裡執行），結果相同。
 
-## 方法一：命令列（需要 Node.js 與網路，最簡單）
+## 命令列（需要 Python 3.9 以上與網路）
 
-    npx -y github:alexwudev/name-translit <語言> <類別> <原文…> [--json] [-v]
+    pip install "git+https://github.com/alexwudev/name-translit"
+    name-translit <語言> <place|person> <原文…> [--json] [-v]
 
-- 語言：fi（芬蘭語）、ru（俄語，必須是西里爾字母）、id（印尼語）
-- 類別：place（地名）、person（人名；名與姓之間輸出「·」）
-- 原文可以給多個；不給時從標準輸入讀，每行一個
-- --json：輸出 JSON 陣列，每筆 {"src", "zh", "extra", "error"}；-v 另附音節與逐字來源
-- 範例：
+有 uv 時免安裝：`uvx --from git+https://github.com/alexwudev/name-translit name-translit <語言> <類別> <原文…>`
+也可 `python -m name_translit …`。Windows 主控台若亂碼，用 `python -X utf8 -m name_translit …`。
 
-    npx -y github:alexwudev/name-translit fi place Kuuterselkä Leitimojärvi
+- 類別：place 地名、person 人名（名與姓之間輸出「·」）。原文可給多個；不給時從標準輸入每行讀一個。
+- --json：輸出 `[{"src": 原文, "zh": 譯名, "extra": {說明: 另一版本}, "detail": [逐字說明]}]`；-v 另附音節與逐字來源。
+- Python 內呼叫：`import name_translit; name_translit.run("de", ["Regensburg"], "place")` 回傳同樣結構。
+
+範例：
+
+    name-translit fi place Kuuterselkä Leitimojärvi
     → Kuuterselkä	庫泰爾塞爾凱
     → Leitimojärvi	萊蒂莫耶爾維	通名意譯：萊蒂莫湖
-    npx -y github:alexwudev/name-translit ru person "Константин Рокоссовский" --json
-    → [{"src": "Константин Рокоссовский", "zh": "康斯坦丁·羅科索夫斯基", "extra": {}}]
+    name-translit de person "Erich von Manstein"
+    → Erich von Manstein	埃里希·馮·曼施泰因
+    name-translit en place "Avoca/əˈvəʊkə/"
+    → Avoca/əˈvəʊkə/	阿沃卡
 
-## 方法二：不用 npm，直接載入網站上的程式（Node.js 18 以上）
+## 各語言的輸入
 
-    node -e "(async()=>{const B='https://alexwudev.github.io/name-translit/';const g=async f=>(await fetch(B+f)).text();(0,eval)((await g('data.js')).replace('const TABLES','globalThis.TABLES').replace(/if \(typeof module[^\n]*\n/,'')+(await g('translit.js')).replace(/if \(typeof module !== 'undefined'\) module\.exports = API; else root\.Translit = API;/,'globalThis.Translit = API;'));console.log(Translit.fi('Kuuterselkä','place').zh)})()"
+| 代碼 | 語言 | 輸入 |
+| --- | --- | --- |
+| fi | 芬蘭語 | 芬蘭文拼寫（ä ö 保留） |
+| ru | 俄語 | 西里爾字母；拉丁轉寫（Rzhev）會被拒絕，請先查回俄文。烏克蘭語、白俄羅斯語等西里爾字母人名也用此表 |
+| id | 印尼語 | 印尼文拼寫，新舊拼法皆可 |
+| en | 英語 | 表依讀音排：最準是「拼寫/國際音標/」（Avoca/əˈvəʊkə/），也可只給音標；只給拼寫時讀音是推測的，僅供參考 |
+| fr | 法語 | 法文拼寫，重音符號要保留（工具依正字法推讀音，詞尾子音讀不讀的例外推不出） |
+| de | 德語 | 德文拼寫（ä ö ü ß，或 ae oe ue） |
+| es | 西班牙語 | 西班牙文拼寫，重音符號、ñ、ü 要保留 |
+| fa | 波斯語 | 只收拉丁轉寫（GB/T 17693.9 附錄 C：ā ī ū、š č ž 或 sh ch zh、kh、q、ʿ）；波斯文字母不標短元音，會被拒絕 |
+| ar | 阿拉伯語 | 拉丁轉寫（UNGEGN／ALA-LC；ʿ 用 ʿ 或半形 '，ʾ 用 ʾ）；阿拉伯字母須標短元音 |
 
-呼叫介面：Translit.<fi|ru|id>(原文, 'place'|'person') 回傳 {zh: 譯名, extra: [[說明, 另一版本], …], info: [逐詞細節], error?}
+## 輸出的另列版本（extra）
 
-## 輸出的附加版本（extra）
-
-- 芬蘭地名以 järvi、joki、saari、lahti 結尾：另給「通名意譯」（湖、河、島、灣），維基條目通常用意譯版。
-- 印尼語原文有開音節的 e：另給「e 若讀 é」版本；印尼文拼寫不分 ǝ 與 é，要查實際讀音再選。
-- 俄語輸入拉丁字母時回傳 error「請輸入西里爾字母原文」，請先查回俄文原文。
+- 通名意譯：芬蘭 järvi／joki／saari／lahti、德語 -see、阿拉伯語 Jabal／Wādī、波斯語 Bandar-e 等，給湖、河、山、港的意譯版；維基條目通常用意譯版。意譯時專名用主格（Kärstilänjärvi→凱爾斯蒂萊湖）。
+- 修飾詞意譯：德語 Ober-／Unter- 等（Oberhausen→上豪森，但慣譯是奧伯豪森）。
+- e 若讀 é：印尼語拼寫不分 ǝ 與 é，要查實際讀音再選。
+- ll 按拉丁美洲讀音：西班牙語。
+- 地名表版本：阿拉伯語人名另給（表注說常見人名的實際譯法常合地名表）。
+- 附錄A慣譯：波斯語、西班牙語的國標附錄常用人名。
 
 ## 使用規則（寫中文維基條目時）
 
-- 譯音表是中國大陸標準。台灣已有通行譯名（赫爾辛基、莫斯科、雅加達、史達林）或中文維基已有條目名時，用通行譯名，不用本工具。
-- 其餘芬、俄、印尼地名人名一律用本工具，不要憑記憶自己音譯；與既有譯名不同時列出對照讓使用者決定。
-- 輸出已是繁體字形，音譯用字「里、于、占、托、采」不會被誤轉。
-- 烏克蘭語、白俄羅斯語等西里爾字母人名也參照俄語人名表；它們的地名不適用。伊斯蘭教人名照阿拉伯人名慣譯，不用本工具。
+1. 台灣已有通行譯名（倫敦、莫斯科、雅加達、蒙哥馬利、赫爾辛基）或中文維基已有條目名時，用通行譯名，不要用本工具改。
+2. 人名常有新華社逐條收錄的慣譯（加西亞、穆罕默德、馬丁、路德維希），與照表譯出的結果不同；先查中文維基或辭典，查不到才用本工具。
+3. 與既有譯名不同時列出對照讓使用者決定，不要自行替換。
+4. 原文括注用該事物本身的語言（芬蘭事物括注芬蘭文，不括注英文）。
 
-## 依據
+## 依據與測試
 
-- 芬蘭語：地名 GB/T 17693.20-2025；人名 新華社《世界人名翻譯大辭典》
-- 俄語：地名 GB/T 17693.4-2009（含中維勘誤）；人名 新華社辭典、《俄語姓名譯名手冊》，含 н 雙拼詞幹表
-- 印尼語：地名 MZ/T 127-2019；人名 新華社辭典
-- 譯音表內容取自中文維基百科（CC BY-SA 4.0）
+- 地名：各語言的 GB/T 17693 系列（英 .1、法 .2、德 .3、俄 .4、西 .5、阿 .6、波斯 .9、芬 .20）與 MZ/T 127-2019（印尼）；人名：新華社《世界人名翻譯大辭典》、《俄語姓名譯名手冊》等。表內容取自中文維基百科（CC BY-SA 4.0）。
+- 各語言測試詞在 `name_translit/langs/*_translit_test.tsv`；不通過的多半是出處用了慣譯，或國標示例與它自己的表不一致，詳見各工具檔頭說明。
+- 網頁與命令列一致性：`python -X utf8 tools/web_compare.py`（本機用無頭 Chrome 比對全部測試詞）。

@@ -1,0 +1,68 @@
+# 波斯語音譯工具測試詞：模式<Tab>原文<Tab>預期譯名（照出處原樣，大陸簡體）<Tab>出處
+# 模式：place＝地名純音譯；place-generic＝地名通名意譯版本；person＝人名表
+# 地名出處：GB/T 17693.9-2017（簡稱 GB）；人名出處：中文維基條目的大陸簡體標題（varianttitles zh-cn，2026-11-17 查）
+place	Qal'e	加勒埃	GB 表2 第5.1.1條（譯名「加勒埃山」，山是補加的通名）
+place	Češme	切什梅	GB 表2 第5.1.1條（譯名「切什梅山」；原表轉寫誤植為 Česme）
+place	Kamar-e Zard	卡马尔-扎尔德	GB 表4 第5.3.5條
+place	Bālā-ye Dizeh	巴拉伊-迪泽	GB 表4 第5.3.5條
+place	Houzpā-ye Sang	胡兹帕伊-桑格	GB 表4 第5.3.5條
+place	Halān-e Qal	哈兰-加勒	GB 表4 第5.3.5條
+place	Ja'far Darrasi	贾法尔-达拉西	GB 表4 第5.3.3條
+place	'Alamdār	阿拉姆达尔	GB 表4 第5.3.3條
+place	Mellat	梅拉特	GB 表4 第5.3.4條
+place	Sadd	萨德	GB 表4 第5.3.4條
+place	Khāneh	哈内	GB 表4 第5.3.1條
+place	Mordeh	莫尔代	GB 表4 第5.3.1條
+place	Kūtāh	库塔赫	GB 表4 第5.3.1條
+place	Owriyā	欧里亚	GB 表4 第5.3.2條
+place	Moujūd	穆朱德	GB 表4 第5.3.2條
+place	Jilow	吉鲁	GB 表4 第5.3.2條
+place	Fin	菲恩	GB 表2（單音節詞，第5.1.6條）
+place	Khān	哈恩	GB 表2（單音節詞，第5.1.6條）
+place	Karbalā'ī 'Abbās	卡尔巴拉伊-阿巴斯	GB 表2 第5.1.6條
+place	Boyūk Barziyāli	博尤克-巴尔济亚利	GB 表2 第5.1.6條
+place	Hājilafte	哈吉拉夫泰	GB 表3 第5.2.1條（譯名「哈吉拉夫泰沼泽」，沼泽是補加的通名）
+place	Dormūnū	多尔穆努	GB 表3 第5.2.1條（譯名「多尔穆努山」）
+place	pā	普阿	GB 表B.2 音譯
+place	do	多奥	GB 表B.2 音譯
+place	now	诺乌	GB 表B.2 音譯
+place	deh	代赫	GB 表B.1 音譯
+place	čoqondar	乔贡达尔	GB 表B.2 音譯
+place	mo'allem	莫阿莱姆	GB 表B.2 音譯
+place	sib	锡卜	GB 表B.2 音譯（表注3：地名開頭西改锡）
+place	enqelāb	恩格拉卜	GB 表B.2 音譯
+place-generic	Bandar-e Genāve	盖纳韦港	GB 表3 第5.2.2條
+place-generic	Tappehāy-ye Didgāh-e Keykom	迪德加赫-凯科姆丘陵	GB 表3 第5.2.2條
+place-generic	Nāteq-e Pāyin	下纳泰格	GB 表2 第5.1.2條
+place-generic	Duriyān-e Kuček	小杜里扬	GB 表2 第5.1.2條
+place-generic	Garāk-Now	新加拉克	GB 表2 第5.1.2條
+place-generic	Jangal-e Qal'e Kati	卡提堡森林	GB 表2 第5.1.1條
+place-generic	Forūdgāh-e Bandar 'Abbās	阿巴斯港机场	GB 表2 第5.1.1條
+place-generic	Yokhāri Mahalleh	约哈里区	GB 表2 第5.1.10條
+person	Hasan Rūhāni	哈桑·鲁哈尼	中維「哈桑·鲁哈尼」
+person	Javād Zarif	贾瓦德·扎里夫	中維「穆罕默德·贾瓦德·扎里夫」
+person	Khātami	哈塔米	中維「穆罕默德·哈塔米」
+person	Lārijāni	拉里贾尼	中維「阿里·拉里贾尼」
+person	Jalili	贾利利	中維「赛义德·贾利利」
+person	Akbar Velāyati	阿克巴尔·韦拉亚提	中維「阿里·阿克巴尔·韦拉亚提」
+person	Kharrāzi	哈拉齐	中維「卡迈勒·哈拉齐」
+person	Ja'far Panāhi	贾法尔·帕纳希	中維「贾法尔·帕纳希」
+person	Majid Majidi	马吉德·马吉迪	中維「马吉德·马吉迪」
+person	Khāmene'i	哈梅内伊	中維「阿里·哈梅内伊」
+person	Banisadr	巴尼萨德尔	中維「阿布哈桑·巴尼萨德尔」
+person	Mūsavi	穆萨维	中維「米尔-侯赛因·穆萨维」
+person	Farrokhzād	法罗赫扎德	中維「芙茹弗·法罗赫扎德」
+person	Hedāyat	赫达亚特	中維「萨迪克·赫达亚特」
+person	Farahāni	法拉哈尼	中維「格什菲·法拉哈尼」
+person	Dāriūš Mehrju'i	达里乌什·梅赫尔朱伊	中維「达里乌什·梅赫尔朱伊」
+person	Kiyārostami	基阿鲁斯达米	中維「阿巴斯·基阿鲁斯达米」
+person	Hāšemi Rafsanjāni	哈什米·拉夫桑贾尼	中維「阿克巴尔·哈什米·拉夫桑贾尼」
+person	Pezeškiyān	佩泽希齐扬	中維「马苏德·佩泽希齐扬」
+person	Araqchi	阿拉格齐	中維「阿巴斯·阿拉格齐」
+person	Ebādi	伊巴迪	中維「希林·伊巴迪」
+person	Dā'i	代伊	中維「阿里·代伊」
+person	Shamkhāni	沙姆哈尼	中維「阿里·沙姆哈尼」
+person	Amir Kabir	阿米尔·卡比尔	中維「阿米尔·卡比尔」
+person	Bāzargān	巴扎尔甘	中維「迈赫迪·巴扎尔甘」
+person	Qālibāf	加利巴夫	中維「穆罕默德-巴盖尔·加利巴夫」
+person	Sepehri	塞佩赫里	中維「苏赫拉布·塞佩赫里」
