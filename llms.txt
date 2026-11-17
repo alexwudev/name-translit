@@ -1,0 +1,47 @@
+# name-translit：外語地名人名音譯（給 AI 與程式讀的說明）
+
+用途：把芬蘭語、俄語（西里爾字母）、印尼語的地名與人名，依中文維基百科「外語譯音表」與中國國家標準音譯成中文，輸出繁體字形。
+網頁版：https://alexwudev.github.io/name-translit/
+原始碼：https://github.com/alexwudev/name-translit
+
+## 方法一：命令列（需要 Node.js 與網路，最簡單）
+
+    npx -y github:alexwudev/name-translit <語言> <類別> <原文…> [--json] [-v]
+
+- 語言：fi（芬蘭語）、ru（俄語，必須是西里爾字母）、id（印尼語）
+- 類別：place（地名）、person（人名；名與姓之間輸出「·」）
+- 原文可以給多個；不給時從標準輸入讀，每行一個
+- --json：輸出 JSON 陣列，每筆 {"src", "zh", "extra", "error"}；-v 另附音節與逐字來源
+- 範例：
+
+    npx -y github:alexwudev/name-translit fi place Kuuterselkä Leitimojärvi
+    → Kuuterselkä	庫泰爾塞爾凱
+    → Leitimojärvi	萊蒂莫耶爾維	通名意譯：萊蒂莫湖
+    npx -y github:alexwudev/name-translit ru person "Константин Рокоссовский" --json
+    → [{"src": "Константин Рокоссовский", "zh": "康斯坦丁·羅科索夫斯基", "extra": {}}]
+
+## 方法二：不用 npm，直接載入網站上的程式（Node.js 18 以上）
+
+    node -e "(async()=>{const B='https://alexwudev.github.io/name-translit/';const g=async f=>(await fetch(B+f)).text();(0,eval)((await g('data.js')).replace('const TABLES','globalThis.TABLES').replace(/if \(typeof module[^\n]*\n/,'')+(await g('translit.js')).replace(/if \(typeof module !== 'undefined'\) module\.exports = API; else root\.Translit = API;/,'globalThis.Translit = API;'));console.log(Translit.fi('Kuuterselkä','place').zh)})()"
+
+呼叫介面：Translit.<fi|ru|id>(原文, 'place'|'person') 回傳 {zh: 譯名, extra: [[說明, 另一版本], …], info: [逐詞細節], error?}
+
+## 輸出的附加版本（extra）
+
+- 芬蘭地名以 järvi、joki、saari、lahti 結尾：另給「通名意譯」（湖、河、島、灣），維基條目通常用意譯版。
+- 印尼語原文有開音節的 e：另給「e 若讀 é」版本；印尼文拼寫不分 ǝ 與 é，要查實際讀音再選。
+- 俄語輸入拉丁字母時回傳 error「請輸入西里爾字母原文」，請先查回俄文原文。
+
+## 使用規則（寫中文維基條目時）
+
+- 譯音表是中國大陸標準。台灣已有通行譯名（赫爾辛基、莫斯科、雅加達、史達林）或中文維基已有條目名時，用通行譯名，不用本工具。
+- 其餘芬、俄、印尼地名人名一律用本工具，不要憑記憶自己音譯；與既有譯名不同時列出對照讓使用者決定。
+- 輸出已是繁體字形，音譯用字「里、于、占、托、采」不會被誤轉。
+- 烏克蘭語、白俄羅斯語等西里爾字母人名也參照俄語人名表；它們的地名不適用。伊斯蘭教人名照阿拉伯人名慣譯，不用本工具。
+
+## 依據
+
+- 芬蘭語：地名 GB/T 17693.20-2025；人名 新華社《世界人名翻譯大辭典》
+- 俄語：地名 GB/T 17693.4-2009（含中維勘誤）；人名 新華社辭典、《俄語姓名譯名手冊》，含 н 雙拼詞幹表
+- 印尼語：地名 MZ/T 127-2019；人名 新華社辭典
+- 譯音表內容取自中文維基百科（CC BY-SA 4.0）

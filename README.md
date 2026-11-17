@@ -25,6 +25,7 @@ npx -y github:alexwudev/name-translit id place "Sungai Tembesi" --json
 - 第一個參數是語言（`fi` 芬蘭語、`ru` 俄語西里爾字母、`id` 印尼語），第二個是 `place` 地名或 `person` 人名，後面接一個或多個原文；沒給原文時從標準輸入讀，每行一個。
 - `--json` 輸出 JSON，方便程式或 AI 解析；`-v` 顯示音節切分與每個字的來源。
 - 命令列與網頁共用 `translit.js`、`data.js`，結果相同。
+- 給 AI 讀的完整呼叫說明：[`llms.txt`](https://alexwudev.github.io/name-translit/llms.txt)（網頁版底部也有）。
 
 ## 檔案
 

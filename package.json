@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Finnish, Russian and Indonesian place/person name transliteration into Chinese, following the zh.wikipedia transliteration tables",
   "bin": { "name-translit": "cli.js" },
-  "files": ["cli.js", "translit.js", "data.js"],
+  "files": ["cli.js", "translit.js", "data.js", "llms.txt"],
   "scripts": { "test": "node tools/test.js" },
   "license": "CC-BY-SA-4.0",
   "repository": { "type": "git", "url": "https://github.com/alexwudev/name-translit.git" }

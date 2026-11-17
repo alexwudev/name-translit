@@ -30,6 +30,8 @@ td.zh{font-size:17px;white-space:nowrap}
 .note{color:var(--muted);font-size:13px;margin-top:20px;border-top:1px solid var(--line);padding-top:12px}
 .note li{margin:3px 0}
 a{color:var(--accent)}
+pre{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:10px;overflow-x:auto;font:13px/1.5 Consolas,monospace;color:var(--fg)}
+.note code{background:var(--panel);padding:0 4px;border-radius:3px;color:var(--fg)}
 .copied{color:var(--ok)!important;border-color:var(--ok)!important}
 </style>
 </head>
@@ -68,6 +70,21 @@ a{color:var(--accent)}
     <li>同一格有兩個字（萊／雷、奧／歐）或女性用字時，取第一個；勾選「顯示音節與來源」可看到另一個。</li>
   </ul>
   <p>譯音表來源：<a href="https://zh.wikipedia.org/wiki/Wikipedia:外語譯音表">中文維基百科 外語譯音表</a>（CC BY-SA 4.0）。原始碼與說明見 <a href="https://github.com/alexwudev/name-translit">GitHub</a>。</p>
+</div>
+
+<div class="note" id="api">
+  <h2 style="font-size:16px;margin:0 0 8px;color:var(--fg)">給 AI 與程式呼叫</h2>
+  <p>完整說明（純文字，適合直接交給 AI 讀）：<a href="llms.txt">llms.txt</a></p>
+  <p><b>方法一：命令列</b>（需要 Node.js 與網路）</p>
+  <pre>npx -y github:alexwudev/name-translit &lt;fi|ru|id&gt; &lt;place|person&gt; &lt;原文…&gt; [--json] [-v]
+
+npx -y github:alexwudev/name-translit fi place Kuuterselkä Leitimojärvi
+npx -y github:alexwudev/name-translit ru person "Константин Рокоссовский" --json</pre>
+  <ul>
+    <li>fi 芬蘭語、ru 俄語（西里爾字母）、id 印尼語；place 地名、person 人名。原文可給多個，不給時從標準輸入每行讀一個。</li>
+    <li><code>--json</code> 輸出 <code>[{"src","zh","extra","error"}]</code>；<code>-v</code> 附音節與逐字來源。</li>
+  </ul>
+  <p><b>方法二：直接載入本站程式</b>（Node.js 18 以上，不用 npm）：抓 <code>data.js</code> 與 <code>translit.js</code> 執行後呼叫 <code>Translit.fi(原文, 'place')</code>，回傳 <code>{zh, extra, info, error}</code>。完整一行指令見 <a href="llms.txt">llms.txt</a>。</p>
 </div>
 </main>
 
